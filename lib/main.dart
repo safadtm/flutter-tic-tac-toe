@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                     _tapped(index);
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.white),
@@ -145,8 +145,8 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.indigo[50],
-                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.redAccent,
+                      foregroundColor: Colors.white,
                     ),
                     onPressed: _clearScoreBoard,
                     child: const Text("Clear Score Board"),
@@ -233,7 +233,7 @@ class _HomePageState extends State<HomePage> {
   void showWinSnackBar(String winner) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: const Duration(seconds: 10),
+        duration: const Duration(seconds: 20),
         content: Container(
           margin: const EdgeInsets.fromLTRB(0, 0, 0, 75),
           decoration: BoxDecoration(
@@ -268,7 +268,7 @@ class _HomePageState extends State<HomePage> {
   void showDrawSnackBar() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: const Duration(seconds: 10),
+        duration: const Duration(seconds: 20),
         content: Container(
           margin: const EdgeInsets.fromLTRB(0, 0, 0, 75),
           decoration: BoxDecoration(
