@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +12,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) => ResponsiveWrapper.builder(
+          BouncingScrollWrapper.builder(context, child!),
+          maxWidth: 1200,
+          minWidth: 450,
+          defaultScale: true,
+          breakpoints: [
+            const ResponsiveBreakpoint.resize(450, name: MOBILE),
+            const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+            const ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+            const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+            const ResponsiveBreakpoint.autoScale(2460, name: "4K"),
+          ],
+          background: Container(color: const Color(0xFFF5F5F5))),
       debugShowCheckedModeBanner: false,
       home: const HomePage(),
     );
@@ -40,59 +54,62 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.indigo[900],
       body: Column(
         children: <Widget>[
-          Expanded(
-            // creating the ScoreBoard
+          SingleChildScrollView(
+            child: Expanded(
+              // creating the ScoreBoard
 
-            child: SizedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        const Text(
-                          'Player X',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          xScore.toString(),
-                          style: const TextStyle(
-                              fontSize: 20, color: Colors.white),
-                        ),
-                      ],
+              child: SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Text(
+                            'Player X',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            xScore.toString(),
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        const Text(
-                          'Player 0',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          oScore.toString(),
-                          style: const TextStyle(
-                              fontSize: 20, color: Colors.white),
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Text(
+                            'Player 0',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            oScore.toString(),
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
+          Spacer(),
           /////////////////////////////////
           Expanded(
             flex: 4,
